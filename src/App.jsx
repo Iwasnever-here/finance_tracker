@@ -4,6 +4,8 @@ import { BrowserRouter, Routes, Route, Link, useLocation } from 'react-router-do
 import MainPage from './components/MainPage';
 import SignIn from './components/SignIn';
 
+import { FaHome,FaPiggyBank, FaWallet, FaBook  } from "react-icons/fa";
+
 import './App.css';
 import SavingPage from './components/SavingPage';
 import TransactionsPage from './components/TransactionsPage';
@@ -21,11 +23,10 @@ function App() {
     const [hovered, setHovered] = useState(false);
 
     const navPaths = [
-      { path: '/', label: 'home', icon: '@' },
-      { path: '/main', label: 'dashboard', icon: '@' },
-      { path: '/savings', label: 'savings', icon: '@' },
-      { path: '/transactions', label: 'transactions', icon: '@' },
-      { path: '/improve', label: 'learn', icon: '@' },
+      { path: '/', label: 'home', icon: <FaHome /> },
+      { path: '/savings', label: 'savings', icon: <FaPiggyBank /> },
+      { path: '/transactions', label: 'transactions', icon: <FaWallet /> },
+      { path: '/improve', label: 'learn', icon: <FaBook /> },
     ];
 
     const isActive = (path) => location.pathname === path;
@@ -39,11 +40,11 @@ function App() {
           onMouseLeave={() => setHovered(false)}
           className={[
             collapsed ? 'w-16' : 'w-60',
-            'm-1 bg-red-500 text-black transition-all duration-300',
+            'm-1 bg-[#C1CB79] text-black transition-all duration-300 rounded-lg',
           ].join(' ')}
         >
           <div className='flex items-center gap-3 px-4 py-4'>
-            <div className='w-8 h-8 bg-red-600'>@</div>
+            <div className='w-10 h-10'><img src = 'moneyman.png' className="w-full h-full object-cover"/></div>
             {!collapsed && <div className='tracking-wide'>hhhhhhh</div>}
           </div>
 
@@ -54,10 +55,10 @@ function App() {
                   <Link
                     to={item.path}
                     className={[
-                      'relative flex items-center h-11',
+                      'relative flex items-center h-11 rounded-lg m-2 ',
                       collapsed ? 'justify-center px-4' : 'gap-3 px-4',
-                      'text-slate-400 hover:text-slate-100 hover:bg-white/45 transition',
-                      isActive(item.path) ? 'bg-white/50 text-white' : '',
+                      'text-black hover:text-black hover:bg-white/45 transition',
+                      isActive(item.path) ? 'bg-white/50 text-black' : '',
                     ].join(' ')}
                     title={collapsed ? item.label : undefined}
                   >
@@ -72,8 +73,7 @@ function App() {
 
         <main>
           <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/main' element={<MainPage />} />
+            <Route path='/' element={<MainPage />} />
             <Route path='/signin' element={<SignIn />} />
             <Route path='/savings' element={<SavingPage />} />
             <Route path='/transactions' element={<TransactionsPage />} />
