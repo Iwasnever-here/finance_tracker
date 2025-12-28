@@ -34,7 +34,7 @@ function App() {
     const collapsed = !hovered;
 
     return (
-      <div className='min-h-screen bg-red-100 flex'>
+      <div className='min-h-screen bg-[#F7EF7D] flex'>
         <aside
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
@@ -71,7 +71,7 @@ function App() {
           </nav>
         </aside>
 
-        <main>
+        <main className='m-1 bg-white w-screen rounded-lg p-2'>
           <Routes>
             <Route path='/' element={<MainPage />} />
             <Route path='/signin' element={<SignIn />} />
