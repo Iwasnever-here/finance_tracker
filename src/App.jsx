@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route, Link, useLocation } from 'react-router-do
 import MainPage from './components/MainPage';
 import SignIn from './components/SignIn';
 
-import { FaHome,FaPiggyBank, FaWallet, FaBook  } from "react-icons/fa";
+import { FaHome,FaPiggyBank, FaWallet, FaBook , FaSignInAlt  } from "react-icons/fa";
 
 import './App.css';
 import SavingPage from './components/SavingPage';
@@ -12,6 +12,16 @@ import TransactionsPage from './components/TransactionsPage';
 import LearnPage from './components/LearnPage';
 
 function App() {
+
+
+  const [age, setAge] = useState(0);
+  const [name, setName] = useState('');
+
+  const [balance, setBalance] = useState(0);
+  const [transaction, setTransaction] = useState(0);
+
+
+
   return (
     <BrowserRouter>
       <MainLayout />
@@ -27,6 +37,7 @@ function App() {
       { path: '/savings', label: 'savings', icon: <FaPiggyBank /> },
       { path: '/transactions', label: 'transactions', icon: <FaWallet /> },
       { path: '/improve', label: 'learn', icon: <FaBook /> },
+      { path: '/signin', label: 'signin temp', icon: <FaSignInAlt  /> },
     ];
 
     const isActive = (path) => location.pathname === path;
@@ -73,11 +84,11 @@ function App() {
 
         <main className='m-1 bg-white w-screen rounded-lg p-2'>
           <Routes>
-            <Route path='/' element={<MainPage />} />
-            <Route path='/signin' element={<SignIn />} />
+            <Route path='/' element={<MainPage name={name}/>} />
             <Route path='/savings' element={<SavingPage />} />
             <Route path='/transactions' element={<TransactionsPage />} />
             <Route path='/improve' element={<LearnPage />} />
+            <Route path='/signin' element={<SignIn age={age} name={name} setAge={setAge} setName={setName}  />} />
           </Routes>
         </main>
       </div>

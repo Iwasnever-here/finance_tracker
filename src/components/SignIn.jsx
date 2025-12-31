@@ -1,14 +1,46 @@
-import React from 'react'
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-function SignIn() {
+function SignIn({ age, name, setAge, setName }) {
+  const [localName, setLocalName] = useState(name || "");
+  const [localAge, setLocalAge] = useState(age || 0);
+
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setName(localName);
+    setAge(Number(localAge));
+
+    navigate("/");
+  };
+
   return (
+    <form onSubmit={handleSubmit} className="p-4 space-y-3">
+      <div>
+        <label className="block">Name</label>
+        <input
+          className="border p-2 rounded"
+          value={localName}
+          onChange={(e) => setLocalName(e.target.value)}
+        />
+      </div>
 
-    <div className='h-screen items-center justify-center content-center text-center'>
-      <div>username</div>
-      <div>password</div>
-      <div>create account ??? maybe maybe</div>
-    </div>
-  )
+      <div>
+        <label className="block">Age</label>
+        <input
+          className="border p-2 rounded"
+          type="number"
+          value={localAge}
+          onChange={(e) => setLocalAge(e.target.value)}
+        />
+      </div>
+
+      <button className="px-4 py-2 rounded bg-black text-white" type="submit">
+        Save
+      </button>
+    </form>
+  );
 }
 
-export default SignIn
+export default SignIn;
