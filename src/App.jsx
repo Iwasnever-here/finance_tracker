@@ -18,7 +18,7 @@ function App() {
   const [name, setName] = useState('');
 
   const [balance, setBalance] = useState(0);
-  const [transaction, setTransaction] = useState(0);
+  const [transaction, setTransaction] = useState([]);
 
 
 
@@ -45,7 +45,7 @@ function App() {
     const collapsed = !hovered;
 
     return (
-      <div className='min-h-screen bg-[#F7EF7D] flex'>
+      <div className='min-h-screen bg-[#F7EF7D] flex '>
         <aside
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
@@ -84,9 +84,9 @@ function App() {
 
         <main className='m-1 bg-white w-screen rounded-lg p-2'>
           <Routes>
-            <Route path='/' element={<MainPage name={name}/>} />
+            <Route path='/' element={<MainPage name={name} balance = {balance}/>} />
             <Route path='/savings' element={<SavingPage />} />
-            <Route path='/transactions' element={<TransactionsPage />} />
+            <Route path='/transactions' element={<TransactionsPage transaction = {transaction} setTransaction = {setTransaction} balance={balance} setBalance = {setBalance}/>} />
             <Route path='/improve' element={<LearnPage />} />
             <Route path='/signin' element={<SignIn age={age} name={name} setAge={setAge} setName={setName}  />} />
           </Routes>

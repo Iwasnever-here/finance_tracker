@@ -5,6 +5,8 @@ function SignIn({ age, name, setAge, setName }) {
   const [localName, setLocalName] = useState(name || "");
   const [localAge, setLocalAge] = useState(age || 0);
 
+  // set starting balance here 
+
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
